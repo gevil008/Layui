@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="layui/css/layui.css"/>
+    <script type="text/javascript" src="layui/layui.js"></script>
+</head>
+<body>
+    <button type="button" class="layui-btn" id="test1">
+        <i class="layui-icon layui-icon-upload"></i>上传图片
+    </button>
+    <!--<p id="test1">上传文件</p>-->
+    <hr>
+    <img src="" width="100px" id="src">
+
+    <script type="text/javascript">
+        layui.use("upload",function () {
+            var upload = layui.upload;
+            var $ = layui.jquery;
+            upload.render({
+                elem: '#test1', //绑定元素
+                url: '/Layui-day02/file/upload', //上传接口
+                field: "pic",//设置上传的参数名
+                done: function(res){
+                    //上传完毕回调
+                    console.log(res);
+                    console.log(res.path);
+                    // $("#src").prop("src",res.path);
+                },
+                error: function(){
+                    //请求异常回调
+                    console.log("文件类型不支持");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
